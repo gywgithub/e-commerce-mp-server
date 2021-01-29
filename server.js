@@ -39,9 +39,9 @@ app.get('/api/v1/stores', (req, res) => {
         "id": 18
       },
       {
-        "name": "DANCE CLUB",
-        "city": "成都",
-        "address": "成华区双林路339号B栋",
+        "name": "Bar002",
+        "city": "BeiJing",
+        "address": "BeijingshiChaoYangQuChaoYangLu123",
         "id": 16
       }
     ]
@@ -91,6 +91,78 @@ app.post('/api/v1/wx/users/oauth_user', (req, res) => {
   }
   res.end(JSON.stringify(data))
 })
+
+app.post('/api/v1/wx/orders', (req, res) => {
+  console.log('orders')
+  let data = {
+    "status": true,
+    "message": "OK",
+    "error": "",
+    "data": {
+      "appId": "xxx4e6bacf",
+      "timeStamp": "xxx11157278",
+      "nonceStr": "xxxbIThBHwVqgFBHn",
+      "package": "xxxprepay_id=zbcxxxxx210bdab4719e0000",
+      "signType": "RSA",
+      "paySign": "xxxabcxxxefgwLsIsLsvRxEQOw6Xbmuffffffffffffffdddddddddddddddddddddddddd=="
+    }
+  }
+  res.end(JSON.stringify(data))
+})
+
+app.get('/api/v1/wx/orders/bills', (req, res) => {
+  console.log('bi')
+  let data = {
+    "status": true,
+    "message": "OK",
+    "error": "",
+    "data": [{
+        "order_no": "1111196577415168",
+        "total_money": 20.0,
+        "real_total_money": 20.0,
+        "create_at": "2021-01-26 11:58:32",
+        "status": "待付款",
+        "detail": [{
+            "beer_id": 1,
+            "title": "动漫女生头像",
+            "price": 20.0,
+            "selectedNum": 1,
+            "src": "",
+            "coupon": {},
+            "modified_time": "2021-01-26 11:58:32"
+          },
+          {
+            "beer_id": 2,
+            "title": "动漫女生头像",
+            "price": 20.0,
+            "selectedNum": 2,
+            "src": "",
+            "coupon": {},
+            "modified_time": "2021-01-26 11:58:32"
+          }
+        ]
+      },
+      {
+        "order_no": "1112375296",
+        "total_money": 20.0,
+        "real_total_money": 20.0,
+        "create_at": "2021-01-26 11:41:30",
+        "status": "待付款",
+        "detail": [{
+          "beer_id": 1,
+          "title": "动漫女生头像",
+          "price": 20.0,
+          "selectedNum": 1,
+          "src": "",
+          "coupon": {},
+          "modified_time": "2021-01-26 11:41:30"
+        }]
+      }
+    ]
+  }
+  res.end(JSON.stringify(data))
+})
+
 // ---------------- end ---------------------
 
 let server = require('http').createServer(app)
